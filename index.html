@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AiM EVO4 – Instalación Triumph 675 SR</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════ HEADER ═══════════════════════════════ -->
+<header>
+  <div class="logo">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+    </svg>
+    AiM Technologies · Triumph Daytona / Street Triple 675 SR
+  </div>
+  <h1>Instalación <span>AiM EVO4</span> + MyChron3</h1>
+  <p class="subtitle">Panel de control interactivo · Guía de montaje y calibración</p>
+</header>
+
+<!-- ══════════════════════════ PROGRESS GLOBAL ════════════════════════════ -->
+<div class="global-progress">
+  <span class="label">Progreso global</span>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="global-fill" style="width:0%"></div>
+  </div>
+  <span class="pct" id="global-pct">0%</span>
+  <button class="btn-reset" id="btn-reset">↺ Reiniciar</button>
+</div>
+
+<!-- ══════════════════════════════ TABS NAV ═══════════════════════════════ -->
+<nav class="tabs" role="tablist">
+  <button class="active" data-tab="tab-componentes" role="tab">📦 Componentes</button>
+  <button data-tab="tab-fases" role="tab">📋 Fases de Instalación</button>
+  <button data-tab="tab-guia" role="tab">🔧 Guía Detallada</button>
+</nav>
+
+<!-- ═══════════════════════════════ MAIN ════════════════════════════════ -->
+<main>
+
+  <!-- ─────────────── TAB 1: COMPONENTES ─────────────── -->
+  <section id="tab-componentes" class="tab-panel active" role="tabpanel">
+    <div class="section-card">
+      <div class="card-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/>
+        </svg>
+        <h2>Tabla de Componentes y Especificaciones de Montaje</h2>
+        <span class="badge">6 items</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Sistema / Componente</th>
+              <th>Ubicación Técnica</th>
+              <th>Fijación / Torque</th>
+              <th>Herramientas / Materiales</th>
+              <th>Calibración / Notas Críticas</th>
+              <th style="text-align:center">QC ✓</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="id-col">1</td>
+              <td><strong>AiM EVO4</strong><br><small style="color:var(--color-text-muted)">Módulo Central</small></td>
+              <td>Subchasis / Bandeja trasera</td>
+              <td>Velcro 3M Dual Lock + Bridas sujeción</td>
+              <td>Desengrasante, Nivel de burbuja</td>
+              <td class="notes">Alinear ejes X/Y/Z con la moto. Nivelación a 0º estricta.</td>
+              <td style="text-align:center">
+                <input type="checkbox" class="qc-check" data-id="comp-1" aria-label="QC componente 1" />
+              </td>
+            </tr>
+            <tr>
+              <td class="id-col">2</td>
+              <td><strong>MyChron3 Dash</strong><br><small style="color:var(--color-text-muted)">Display</small></td>
+              <td>Cockpit / Araña mecanizada</td>
+              <td>Tornillería M6 (10 Nm) + Loctite 243</td>
+              <td>Llave dinamométrica, llaves Allen</td>
+              <td class="notes">Comprobar visibilidad en posición de acople del piloto.</td>
+              <td style="text-align:center">
+                <input type="checkbox" class="qc-check" data-id="comp-2" aria-label="QC componente 2" />
+              </td>
+            </tr>
+            <tr>
+              <td class="id-col">3</td>
+              <td><strong>Antena GPS</strong></td>
+              <td>Colín / Frontal (Cúpula)</td>
+              <td>Cinta 3M VHB</td>
+              <td>Alcohol isopropílico para limpieza</td>
+              <td class="notes critical">Sin obstrucción superior (carbono/metal bloquean señal).</td>
+              <td style="text-align:center">
+                <input type="checkbox" class="qc-check" data-id="comp-3" aria-label="QC componente 3" />
+              </td>
+            </tr>
+            <tr>
+              <td class="id-col">4</td>
+              <td><strong>Potenciómetro</strong><br><small style="color:var(--color-text-muted)">Suspensión</small></td>
+              <td>Horquilla delantera</td>
+              <td>Abrazaderas M4 (3–4 Nm)</td>
+              <td>Pie de rey, llaves Allen 3 mm</td>
+              <td class="notes critical">Reservar mín. 5 mm de vástago en compresión máxima.</td>
+              <td style="text-align:center">
+                <input type="checkbox" class="qc-check" data-id="comp-4" aria-label="QC componente 4" />
+              </td>
+            </tr>
+            <tr>
+              <td class="id-col">5</td>
+              <td><strong>Sensor Velocidad</strong><br><small style="color:var(--color-text-muted)">Inductivo</small></td>
+              <td>Soporte pinza freno radial</td>
+              <td>Tornillería M6 (10 Nm) + Loctite 243</td>
+              <td>Galgas de espesores</td>
+              <td class="notes critical">Gap milimétrico de 1.0 – 2.0 mm respecto al disco.</td>
+              <td style="text-align:center">
+                <input type="checkbox" class="qc-check" data-id="comp-5" aria-label="QC componente 5" />
+              </td>
+            </tr>
+            <tr>
+              <td class="id-col">6</td>
+              <td><strong>Mazo de Cables</strong><br><small style="color:var(--color-text-muted)">CAN Bus</small></td>
+              <td>Ramal principal chasis</td>
+              <td>Cinta de tela (Tesa) / Bridas</td>
+              <td>Pasacables, funda termorretráctil</td>
+              <td class="notes">Aislar de fuentes de interferencia electromagnética (bobinas).</td>
+              <td style="text-align:center">
+                <input type="checkbox" class="qc-check" data-id="comp-6" aria-label="QC componente 6" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────── TAB 2: FASES DE INSTALACIÓN ─────────────── -->
+  <section id="tab-fases" class="tab-panel" role="tabpanel">
+    <div class="section-card">
+      <div class="card-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+        </svg>
+        <h2>Plan de Instalación por Fases</h2>
+        <span class="badge">9 tareas</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Fase</th>
+              <th>Tarea Específica</th>
+              <th>Especificaciones Técnicas (El "Cómo")</th>
+              <th>Verificación y Control de Calidad (QC)</th>
+              <th>Tiempo Est.</th>
+              <th>Firma</th>
+              <th style="text-align:center">QC ✓</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Fase 1: Prep -->
+            <tr>
+              <td><span class="phase-badge phase-prep">1. Prep</span></td>
+              <td><strong>Aislamiento eléctrico</strong></td>
+              <td>Desconectar borne negativo de la batería.</td>
+              <td class="notes">Voltaje 0 V confirmado en el sistema.</td>
+              <td style="white-space:nowrap">⏱ 10 min</td>
+              <td><input type="text" class="firma-input" data-id="fase-f1a" placeholder="Iniciales" aria-label="Firma tarea 1A" /></td>
+              <td style="text-align:center"><input type="checkbox" class="qc-check" data-id="fase-1a" aria-label="QC fase 1 tarea a" /></td>
+            </tr>
+            <tr>
+              <td><span class="phase-badge phase-prep">1. Prep</span></td>
+              <td><strong>Desmontaje carenados</strong></td>
+              <td>Retirar plásticos para acceso al chasis.</td>
+              <td class="notes">Tornillería en bandejas magnéticas numeradas.</td>
+              <td style="white-space:nowrap">⏱ 30 min</td>
+              <td><input type="text" class="firma-input" data-id="fase-f1b" placeholder="Iniciales" aria-label="Firma tarea 1B" /></td>
+              <td style="text-align:center"><input type="checkbox" class="qc-check" data-id="fase-1b" aria-label="QC fase 1 tarea b" /></td>
+            </tr>
+            <!-- Fase 2: Core -->
+            <tr>
+              <td><span class="phase-badge phase-core">2. Core</span></td>
+              <td><strong>Montaje de Datalogger</strong></td>
+              <td>Instalar EVO4 con tolerancias de vibración.</td>
+              <td class="notes">Nivel confirmado a 0º en ejes longitudinal/transversal.</td>
+              <td style="white-space:nowrap">⏱ 20 min</td>
+              <td><input type="text" class="firma-input" data-id="fase-f2a" placeholder="Iniciales" aria-label="Firma tarea 2A" /></td>
+              <td style="text-align:center"><input type="checkbox" class="qc-check" data-id="fase-2a" aria-label="QC fase 2 tarea a" /></td>
+            </tr>
+            <tr>
+              <td><span class="phase-badge phase-core">2. Core</span></td>
+              <td><strong>Montaje Dash y GPS</strong></td>
+              <td>Adherir GPS tras desengrasar; atornillar Dash.</td>
+              <td class="notes">Giro del manillar libre de topes; cables sin tensión.</td>
+              <td style="white-space:nowrap">⏱ 30 min</td>
+              <td><input type="text" class="firma-input" data-id="fase-f2b" placeholder="Iniciales" aria-label="Firma tarea 2B" /></td>
+              <td style="text-align:center"><input type="checkbox" class="qc-check" data-id="fase-2b" aria-label="QC fase 2 tarea b" /></td>
+            </tr>
+            <!-- Fase 3: Sens -->
+            <tr>
+              <td><span class="phase-badge phase-sens">3. Sens</span></td>
+              <td><strong>Regulación Potenciómetro</strong></td>
+              <td>Alinear vástago 100% paralelo a la barra.</td>
+              <td class="notes critical">Test físico: Hundir a tope, verificar que no colapsa el sensor.</td>
+              <td style="white-space:nowrap">⏱ 45 min</td>
+              <td><input type="text" class="firma-input" data-id="fase-f3a" placeholder="Iniciales" aria-label="Firma tarea 3A" /></td>
+              <td style="text-align:center"><input type="checkbox" class="qc-check" data-id="fase-3a" aria-label="QC fase 3 tarea a" /></td>
+            </tr>
+            <tr>
+              <td><span class="phase-badge phase-sens">3. Sens</span></td>
+              <td><strong>Regulación Velocidad</strong></td>
+              <td>Ajustar distancia sensor-tornillo del disco.</td>
+              <td class="notes">Giro manual de 360º: Lectura positiva en todos los tornillos.</td>
+              <td style="white-space:nowrap">⏱ 25 min</td>
+              <td><input type="text" class="firma-input" data-id="fase-f3b" placeholder="Iniciales" aria-label="Firma tarea 3B" /></td>
+              <td style="text-align:center"><input type="checkbox" class="qc-check" data-id="fase-3b" aria-label="QC fase 3 tarea b" /></td>
+            </tr>
+            <!-- Fase 4: Cabl -->
+            <tr>
+              <td><span class="phase-badge phase-cabl">4. Cabl</span></td>
+              <td><strong>Enrutamiento seguro</strong></td>
+              <td>Guiar mazo principal por el interior del chasis.</td>
+              <td class="notes">Cables alejados &gt;5 cm de colectores y zonas de pinzamiento.</td>
+              <td style="white-space:nowrap">⏱ 45 min</td>
+              <td><input type="text" class="firma-input" data-id="fase-f4a" placeholder="Iniciales" aria-label="Firma tarea 4A" /></td>
+              <td style="text-align:center"><input type="checkbox" class="qc-check" data-id="fase-4a" aria-label="QC fase 4 tarea a" /></td>
+            </tr>
+            <!-- Fase 5: Soft -->
+            <tr>
+              <td><span class="phase-badge phase-soft">5. Soft</span></td>
+              <td><strong>Setup RaceStudio</strong></td>
+              <td>Dar contacto, cargar configuración de 675 SR.</td>
+              <td class="notes">Pilotos LED de EVO4 encendidos, conexión a PC estable.</td>
+              <td style="white-space:nowrap">⏱ 20 min</td>
+              <td><input type="text" class="firma-input" data-id="fase-f5a" placeholder="Iniciales" aria-label="Firma tarea 5A" /></td>
+              <td style="text-align:center"><input type="checkbox" class="qc-check" data-id="fase-5a" aria-label="QC fase 5 tarea a" /></td>
+            </tr>
+            <tr>
+              <td><span class="phase-badge phase-soft">5. Soft</span></td>
+              <td><strong>Calibración a Cero</strong></td>
+              <td>Establecer "0" de suspensión extendida.</td>
+              <td class="notes">Telemetría en vivo mostrando valores reales y lógicos.</td>
+              <td style="white-space:nowrap">⏱ 15 min</td>
+              <td><input type="text" class="firma-input" data-id="fase-f5b" placeholder="Iniciales" aria-label="Firma tarea 5B" /></td>
+              <td style="text-align:center"><input type="checkbox" class="qc-check" data-id="fase-5b" aria-label="QC fase 5 tarea b" /></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────── TAB 3: GUÍA DETALLADA ─────────────── -->
+  <section id="tab-guia" class="tab-panel" role="tabpanel">
+    <div class="section-card">
+      <div class="card-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2">
+          <polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+        </svg>
+        <h2>Guía Paso a Paso Detallada</h2>
+        <span class="badge">18 pasos</span>
+      </div>
+
+      <!-- ── FASE 1 ── -->
+      <div class="phase-group" id="pg-f1">
+        <div class="phase-title">
+          <span class="phase-badge phase-prep">Fase 1</span>
+          <h3>Preparación</h3>
+          <span class="phase-progress"></span>
+          <span class="toggle-icon">▾</span>
+        </div>
+        <ul class="step-list">
+          <li class="step-item" id="step-g1a">
+            <input type="checkbox" class="qc-check step-check" data-id="g-1a" aria-label="Paso: Desconectar la batería" />
+            <div class="step-body">
+              <div class="task">Desconectar la batería</div>
+              <div class="action">Retirar el borne negativo para evitar cortocircuitos.</div>
+            </div>
+          </li>
+          <li class="step-item" id="step-g1b">
+            <input type="checkbox" class="qc-check step-check" data-id="g-1b" aria-label="Paso: Desmontaje de carenados" />
+            <div class="step-body">
+              <div class="task">Desmontaje de carenados</div>
+              <div class="action">Retirar tapas laterales, asiento, colín y cúpula frontal para facilitar el acceso al chasis.</div>
+            </div>
+          </li>
+          <li class="step-item" id="step-g1c">
+            <input type="checkbox" class="qc-check step-check" data-id="g-1c" aria-label="Paso: Presentación en seco" />
+            <div class="step-body">
+              <div class="task">Presentación en seco</div>
+              <div class="action">Colocar provisionalmente el EVO4, la pantalla y los sensores en sus ubicaciones para medir la longitud de los cables y decidir la mejor ruta.</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ── FASE 2 ── -->
+      <div class="phase-group" id="pg-f2">
+        <div class="phase-title">
+          <span class="phase-badge phase-core">Fase 2</span>
+          <h3>Módulo EVO4</h3>
+          <span class="phase-progress"></span>
+          <span class="toggle-icon">▾</span>
+        </div>
+        <ul class="step-list">
+          <li class="step-item" id="step-g2a">
+            <input type="checkbox" class="qc-check step-check" data-id="g-2a" aria-label="Paso: Fijación del EVO4" />
+            <div class="step-body">
+              <div class="task">Fijación del EVO4</div>
+              <div class="action">Instalar en el subchasis/colín asegurando que quede 100% horizontal y plano respecto a la moto.</div>
+            </div>
+          </li>
+          <li class="step-item" id="step-g2b">
+            <input type="checkbox" class="qc-check step-check" data-id="g-2b" aria-label="Paso: Aislamiento de vibraciones" />
+            <div class="step-body">
+              <div class="task">Aislamiento de vibraciones</div>
+              <div class="action">Usar velcro industrial de alta densidad o pequeños silentblocks para proteger el disco interno del datalogger.</div>
+            </div>
+          </li>
+          <li class="step-item" id="step-g2c">
+            <input type="checkbox" class="qc-check step-check" data-id="g-2c" aria-label="Paso: Toma de corriente" />
+            <div class="step-body">
+              <div class="task">Toma de corriente</div>
+              <div class="action">Conectar la alimentación a una toma de 12 V bajo llave (para que se encienda con el contacto) y asegurar una buena conexión a masa en el chasis.</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ── FASE 3 ── -->
+      <div class="phase-group" id="pg-f3">
+        <div class="phase-title">
+          <span class="phase-badge phase-core">Fase 3</span>
+          <h3>Cockpit y GPS</h3>
+          <span class="phase-progress"></span>
+          <span class="toggle-icon">▾</span>
+        </div>
+        <ul class="step-list">
+          <li class="step-item" id="step-g3a">
+            <input type="checkbox" class="qc-check step-check" data-id="g-3a" aria-label="Paso: Soporte del Dash" />
+            <div class="step-body">
+              <div class="task">Soporte del Dash</div>
+              <div class="action">Fabricar/adaptar pletina de aluminio o carbono para anclar la pantalla MyChron3 en la araña frontal o tija superior.</div>
+            </div>
+          </li>
+          <li class="step-item" id="step-g3b">
+            <input type="checkbox" class="qc-check step-check" data-id="g-3b" aria-label="Paso: Fijación de la pantalla" />
+            <div class="step-body">
+              <div class="task">Fijación de la pantalla</div>
+              <div class="action">Asegurar el display y guiar el cable rizado hacia el chasis sin que interfiera con el giro del manillar.</div>
+            </div>
+          </li>
+          <li class="step-item" id="step-g3c">
+            <input type="checkbox" class="qc-check step-check" data-id="g-3c" aria-label="Paso: Ubicación de antena GPS" />
+            <div class="step-body">
+              <div class="task">Ubicación de antena GPS</div>
+              <div class="action">Pegar con cinta 3M de doble cara en el colín o cúpula.</div>
+            </div>
+          </li>
+          <li class="step-item" id="step-g3d">
+            <input type="checkbox" class="qc-check step-check" data-id="g-3d" aria-label="Paso: Verificación de visión GPS" />
+            <div class="step-body">
+              <div class="task">Verificación de visión GPS</div>
+              <div class="action">Comprobar que ninguna pieza metálica, de carbono o el cuerpo del piloto tape la antena. Conectar al puerto "Exp" del EVO4.</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ── FASE 4 ── -->
+      <div class="phase-group" id="pg-f4">
+        <div class="phase-title">
+          <span class="phase-badge phase-sens">Fase 4</span>
+          <h3>Sensores</h3>
+          <span class="phase-progress"></span>
+          <span class="toggle-icon">▾</span>
+        </div>
+        <ul class="step-list">
+          <li class="step-item" id="step-g4a">
+            <input type="checkbox" class="qc-check step-check" data-id="g-4a" aria-label="Paso: Soportes del potenciómetro" />
+            <div class="step-body">
+              <div class="task">Soportes del potenciómetro</div>
+              <div class="action">Instalar las abrazaderas mecanizadas en la botella superior de la horquilla y en el soporte radial de la pinza de freno.</div>
+            </div>
+          </li>
+          <li class="step-item" id="step-g4b">
+            <input type="checkbox" class="qc-check step-check" data-id="g-4b" aria-label="Paso: Alineación del potenciómetro" />
+            <div class="step-body">
+              <div class="task">Alineación del potenciómetro</div>
+              <div class="action">Asegurar que el sensor trabaje completamente paralelo a la horquilla para evitar fricción lateral en el vástago.</div>
+            </div>
+          </li>
+          <li class="step-item" id="step-g4c">
+            <input type="checkbox" class="qc-check step-check" data-id="g-4c" aria-label="Paso crítico: Prueba de recorrido" />
+            <div class="step-body">
+              <div class="task">⚠️ PRUEBA CRÍTICA — Recorrido</div>
+              <div class="action">Comprimir la horquilla delantera hasta hacer tope mecánico.</div>
+              <div class="warning">⚠️ Verificar visualmente que el sensor NO llega a su límite. Si el sensor hace tope antes que la horquilla, se partirá.</div>
+            </div>
+          </li>
+          <li class="step-item" id="step-g4d">
+            <input type="checkbox" class="qc-check step-check" data-id="g-4d" aria-label="Paso: Soporte sensor de velocidad" />
+            <div class="step-body">
+              <div class="task">Soporte sensor de velocidad</div>
+              <div class="action">Fabricar pletina en la pinza de freno (preferiblemente trasera).</div>
+            </div>
+          </li>
+          <li class="step-item" id="step-g4e">
+            <input type="checkbox" class="qc-check step-check" data-id="g-4e" aria-label="Paso: Ajuste del Gap de velocidad" />
+            <div class="step-body">
+              <div class="task">Ajuste del Gap (Velocidad)</div>
+              <div class="action">Ajustar la distancia entre la punta del sensor inductivo y la cabeza del tornillo del disco de freno con una galga. Debe estar entre <strong>1.0 mm y 2.0 mm</strong>. Conectar al puerto "Speed".</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ── FASE 5 ── -->
+      <div class="phase-group" id="pg-f5">
+        <div class="phase-title">
+          <span class="phase-badge phase-cabl">Fase 5</span>
+          <h3>Enrutado y ECU</h3>
+          <span class="phase-progress"></span>
+          <span class="toggle-icon">▾</span>
+        </div>
+        <ul class="step-list">
+          <li class="step-item" id="step-g5a">
+            <input type="checkbox" class="qc-check step-check" data-id="g-5a" aria-label="Paso: Guiado limpio de cables" />
+            <div class="step-body">
+              <div class="task">Guiado limpio</div>
+              <div class="action">Pasar todos los cables (extensores de sensores y GPS) pegados a las vigas principales del chasis usando bridas de nylon.</div>
+            </div>
+          </li>
+          <li class="step-item" id="step-g5b">
+            <input type="checkbox" class="qc-check step-check" data-id="g-5b" aria-label="Paso: Protección térmica y mecánica" />
+            <div class="step-body">
+              <div class="task">Protección térmica / mecánica</div>
+              <div class="action">Comprobar que ningún cable pasa a menos de 5 cm de los colectores de escape ni por la zona de topes de dirección.</div>
+            </div>
+          </li>
+          <li class="step-item" id="step-g5c">
+            <input type="checkbox" class="qc-check step-check" data-id="g-5c" aria-label="Paso: Conexión a ECU" />
+            <div class="step-body">
+              <div class="task">Conexión a ECU</div>
+              <div class="action">Cablear la línea CAN Bus hacia el conector OBD de la moto (si hay protocolo para la 675 SR) O enrollar el cable inductivo de RPM a la bobina del cilindro 1.</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ── FASE 6 ── -->
+      <div class="phase-group" id="pg-f6">
+        <div class="phase-title">
+          <span class="phase-badge phase-soft">Fase 6</span>
+          <h3>Configuración y Pruebas</h3>
+          <span class="phase-progress"></span>
+          <span class="toggle-icon">▾</span>
+        </div>
+        <ul class="step-list">
+          <li class="step-item" id="step-g6a">
+            <input type="checkbox" class="qc-check step-check" data-id="g-6a" aria-label="Paso: Conectar batería" />
+            <div class="step-body">
+              <div class="task">Conectar batería</div>
+              <div class="action">Restaurar la corriente y dar el contacto. Verificar que el EVO4 y el Dash se encienden correctamente.</div>
+            </div>
+          </li>
+          <li class="step-item" id="step-g6b">
+            <input type="checkbox" class="qc-check step-check" data-id="g-6b" aria-label="Paso: Conexión a PC" />
+            <div class="step-body">
+              <div class="task">Conexión a PC</div>
+              <div class="action">Enchufar el cable de datos al portátil y abrir el software AiM RaceStudio.</div>
+            </div>
+          </li>
+          <li class="step-item" id="step-g6c">
+            <input type="checkbox" class="qc-check step-check" data-id="g-6c" aria-label="Paso: Configuración de Moto" />
+            <div class="step-body">
+              <div class="task">Configuración de Moto</div>
+              <div class="action">Seleccionar/configurar el modelo de moto o el protocolo CAN correcto.</div>
+            </div>
+          </li>
+          <li class="step-item" id="step-g6d">
+            <input type="checkbox" class="qc-check step-check" data-id="g-6d" aria-label="Paso: Calibración a Cero" />
+            <div class="step-body">
+              <div class="task">Calibración a Cero</div>
+              <div class="action">Con la moto en los caballetes de pista y la suspensión completamente extendida, calibrar el punto "Cero" del potenciómetro de la horquilla en el software.</div>
+            </div>
+          </li>
+          <li class="step-item" id="step-g6e">
+            <input type="checkbox" class="qc-check step-check" data-id="g-6e" aria-label="Paso: Prueba de giro" />
+            <div class="step-body">
+              <div class="task">Prueba de giro</div>
+              <div class="action">Hacer girar la rueda con la mano y comprobar en la pantalla del PC o del Dash que el sensor de velocidad lee los pulsos correctamente.</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div><!-- /.section-card -->
+  </section><!-- /#tab-guia -->
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
