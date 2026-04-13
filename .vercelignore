@@ -1,5 +1,4 @@
 # Excluir utilidades y artefactos no web del deploy
 tools/
 *.xlsx
-main.py
 tools/telemetria/generar_plan_telemetria.py
