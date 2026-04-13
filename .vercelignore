@@ -1,0 +1,4 @@
+# Archivos locales de automatizacion y datos
+*.py
+requirements.txt
+*.xlsx
