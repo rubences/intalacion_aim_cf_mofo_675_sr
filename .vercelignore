@@ -1,4 +1,4 @@
-# Archivos locales de automatizacion y datos
+# Excluir utilidades y artefactos no web del deploy
+tools/
 *.py
-requirements.txt
 *.xlsx
