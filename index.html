@@ -263,6 +263,23 @@
         <span class="badge">18 pasos</span>
       </div>
 
+      <div class="guide-toolbar" aria-label="Herramientas de guía">
+        <label class="guide-search">
+          <span>Buscar paso</span>
+          <input
+            type="search"
+            id="guide-search"
+            placeholder="Ej: sensor, GPS, batería..."
+            aria-label="Buscar en guía detallada"
+          />
+        </label>
+        <label class="guide-toggle">
+          <input type="checkbox" id="toggle-pending" />
+          <span>Mostrar solo pendientes</span>
+        </label>
+        <button type="button" class="btn-collapse" id="btn-collapse-all">Colapsar todo</button>
+      </div>
+
       <!-- ── FASE 1 ── -->
       <div class="phase-group" id="pg-f1">
         <div class="phase-title">

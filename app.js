@@ -103,14 +103,77 @@ function updateAllProgress() {
 // ── Accordions ────────────────────────────────────────────────────────────────
 function initAccordions() {
   document.querySelectorAll(".phase-title").forEach((title) => {
-    title.addEventListener("click", () => {
+    title.setAttribute("role", "button");
+    title.setAttribute("tabindex", "0");
+    title.setAttribute("aria-expanded", "true");
+
+    const toggleGroup = () => {
       const group = title.closest(".phase-group");
+      if (!group) return;
       group.classList.toggle("collapsed");
+      const isExpanded = !group.classList.contains("collapsed");
+      title.setAttribute("aria-expanded", String(isExpanded));
       const body = group.querySelector(".step-list");
       if (body) {
-        body.style.display = group.classList.contains("collapsed") ? "none" : "";
+        body.style.display = isExpanded ? "" : "none";
+      }
+    };
+
+    title.addEventListener("click", toggleGroup);
+    title.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        toggleGroup();
       }
     });
+  });
+}
+
+function applyGuideFilters() {
+  const searchInput = document.getElementById("guide-search");
+  const pendingOnly = document.getElementById("toggle-pending")?.checked;
+  const query = searchInput?.value.trim().toLowerCase() || "";
+
+  document.querySelectorAll(".phase-group").forEach((group) => {
+    let groupHasVisibleItems = false;
+
+    group.querySelectorAll(".step-item").forEach((item) => {
+      const stepCheck = item.querySelector("input.qc-check");
+      const itemText = item.textContent.toLowerCase();
+      const matchQuery = !query || itemText.includes(query);
+      const matchPending = !pendingOnly || !stepCheck?.checked;
+      const isVisible = matchQuery && matchPending;
+
+      item.classList.toggle("filtered-out", !isVisible);
+      if (isVisible) groupHasVisibleItems = true;
+    });
+
+    group.classList.toggle("filtered-out", !groupHasVisibleItems);
+  });
+}
+
+function initGuideTools() {
+  const searchInput = document.getElementById("guide-search");
+  const pendingToggle = document.getElementById("toggle-pending");
+  const collapseBtn = document.getElementById("btn-collapse-all");
+
+  searchInput?.addEventListener("input", applyGuideFilters);
+  pendingToggle?.addEventListener("change", applyGuideFilters);
+
+  collapseBtn?.addEventListener("click", () => {
+    const groups = document.querySelectorAll(".phase-group");
+    const shouldCollapse = collapseBtn.dataset.mode !== "expand";
+
+    groups.forEach((group) => {
+      group.classList.toggle("collapsed", shouldCollapse);
+      const title = group.querySelector(".phase-title");
+      const body = group.querySelector(".step-list");
+      if (title) title.setAttribute("aria-expanded", String(!shouldCollapse));
+      if (body) body.style.display = shouldCollapse ? "none" : "";
+    });
+
+    collapseBtn.dataset.mode = shouldCollapse ? "expand" : "collapse";
+    collapseBtn.textContent = shouldCollapse ? "Expandir todo" : "Colapsar todo";
   });
 }
 
@@ -138,5 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initCheckboxes();
   initFirmaInputs();
   initAccordions();
+  initGuideTools();
+  applyGuideFilters();
   initReset();
 });
