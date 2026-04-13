@@ -1,4 +1,3 @@
 # Excluir utilidades y artefactos no web del deploy
 tools/
-*.py
 *.xlsx
