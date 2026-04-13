@@ -35,6 +35,7 @@
   <button class="active" data-tab="tab-componentes" role="tab">📦 Componentes</button>
   <button data-tab="tab-fases" role="tab">📋 Fases de Instalación</button>
   <button data-tab="tab-guia" role="tab">🔧 Guía Detallada</button>
+  <button data-tab="tab-piezas-3d" role="tab">🧩 Piezas 3D</button>
 </nav>
 
 <!-- ═══════════════════════════════ MAIN ════════════════════════════════ -->
@@ -516,6 +517,172 @@
 
     </div><!-- /.section-card -->
   </section><!-- /#tab-guia -->
+
+  <!-- ─────────────── TAB 4: PIEZAS 3D ─────────────── -->
+  <section id="tab-piezas-3d" class="tab-panel" role="tabpanel">
+    <div class="section-card">
+      <div class="card-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+          <polyline points="7.5 4.21 12 6.81 16.5 4.21"/>
+          <polyline points="7.5 19.79 7.5 14.6 3 12"/>
+          <polyline points="21 12 16.5 14.6 16.5 19.79"/>
+          <polyline points="12 22.08 12 17"/>
+        </svg>
+        <h2>Guía de Piezas para Impresión 3D</h2>
+        <span class="badge">5 piezas</span>
+      </div>
+
+      <div class="print-summary-grid">
+        <article class="print-summary-card">
+          <h3>Objetivo</h3>
+          <p>Fabricar soportes y guías de instalación con geometrías repetibles, menor vibración y montaje limpio sobre la 675 SR.</p>
+        </article>
+        <article class="print-summary-card">
+          <h3>Materiales Recomendados</h3>
+          <p>Nylon CF o PA12 para piezas estructurales, ASA para exteriores expuestos a UV y PETG solo en guías de cableado sin carga.</p>
+        </article>
+        <article class="print-summary-card">
+          <h3>Criterios de Diseño</h3>
+          <p>Holgura funcional de 0.20 a 0.35 mm, radios internos mínimos de 1.5 mm e insertos metálicos en uniones roscadas recurrentes.</p>
+        </article>
+      </div>
+
+      <div class="table-wrap">
+        <table class="print-table">
+          <thead>
+            <tr>
+              <th>Pieza</th>
+              <th>Zona</th>
+              <th>Medidas Detalladas</th>
+              <th>Material / Proceso</th>
+              <th>Configuración de Impresión</th>
+              <th>Notas de Montaje</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Soporte Dash Frontal</strong></td>
+              <td>Araña frontal / cockpit</td>
+              <td class="print-specs">
+                Base 132 x 48 x 6 mm<br />
+                Taladros M5 entre centros: 102 mm<br />
+                Elevación del display: 22 mm<br />
+                Inclinación objetivo: 12°
+              </td>
+              <td><strong>Nylon CF</strong><br /><small>SLS o FDM reforzado</small></td>
+              <td class="print-specs">
+                Capa 0.20 mm<br />
+                5 perímetros<br />
+                Infill 45% gyroid<br />
+                Insertos térmicos M5
+              </td>
+              <td class="notes">Añadir silentblocks de 3 mm entre soporte y araña para reducir vibración del panel.</td>
+            </tr>
+            <tr>
+              <td><strong>Base Antena GPS</strong></td>
+              <td>Colín o cúpula</td>
+              <td class="print-specs">
+                Plataforma 62 x 62 x 3.5 mm<br />
+                Canal de cable: 8 x 6 mm<br />
+                Radio de esquinas: 6 mm<br />
+                Altura de cuña: 4 mm
+              </td>
+              <td><strong>ASA</strong><br /><small>FDM exterior</small></td>
+              <td class="print-specs">
+                Capa 0.20 mm<br />
+                4 perímetros<br />
+                Infill 35% grid<br />
+                6 capas sólidas arriba/abajo
+              </td>
+              <td class="notes">Preparar superficie plana para adhesivo 3M VHB y orientar la antena con visibilidad libre al cielo.</td>
+            </tr>
+            <tr>
+              <td><strong>Soporte Sensor Velocidad</strong></td>
+              <td>Pinza de freno / soporte radial</td>
+              <td class="print-specs">
+                Brazo 78 x 18 x 8 mm<br />
+                Ranura de ajuste: 16 x 6 mm<br />
+                Alojamiento sensor: 12 mm<br />
+                Offset regulable: 3 mm
+              </td>
+              <td><strong>PA12</strong><br /><small>SLS recomendado</small></td>
+              <td class="print-specs">
+                Capa 0.15-0.20 mm<br />
+                6 perímetros<br />
+                Infill 50% cubic<br />
+                Refuerzo local en orejas de fijación
+              </td>
+              <td class="notes critical">Validar gap final de 1.0 a 2.0 mm al tornillo/disco y bloquear regulación con tornillería M6 + fijador.</td>
+            </tr>
+            <tr>
+              <td><strong>Guía de Cableado Lateral</strong></td>
+              <td>Viga principal del chasis</td>
+              <td class="print-specs">
+                Longitud 95 mm<br />
+                Canal interior: 14 x 10 mm<br />
+                Espesor de pared: 3 mm<br />
+                Puente de brida: 5 mm
+              </td>
+              <td><strong>PETG</strong><br /><small>FDM funcional</small></td>
+              <td class="print-specs">
+                Capa 0.24 mm<br />
+                4 perímetros<br />
+                Infill 30% gyroid<br />
+                Orientación lateral sin soportes
+              </td>
+              <td class="notes">Dejar borde redondeado para no cortar funda Tesa ni termorretráctil durante vibración.</td>
+            </tr>
+            <tr>
+              <td><strong>Abrazadera Potenciómetro</strong></td>
+              <td>Botella de horquilla</td>
+              <td class="print-specs">
+                Diámetro interior nominal: 53 mm<br />
+                Cuerpo 24 mm de ancho<br />
+                Espesor 7 mm<br />
+                Orejetas para M4: 9 mm
+              </td>
+              <td><strong>Nylon CF</strong><br /><small>SLS o FDM cerrado</small></td>
+              <td class="print-specs">
+                Capa 0.16 mm<br />
+                5 perímetros<br />
+                Infill 55% gyroid<br />
+                Separación funcional interior: +0.25 mm
+              </td>
+              <td class="notes critical">Comprobar paralelismo del sensor respecto a la horquilla y recorrido completo antes de cerrar fijación.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="print-notes-grid">
+        <article class="print-note-block">
+          <h3>Checklist CAD</h3>
+          <ul>
+            <li>Definir datum de montaje real sobre la moto antes de modelar.</li>
+            <li>Medir con calibre y plantilla de cartón antes de congelar cotas.</li>
+            <li>Reservar paso de herramienta para montaje con Allen o vaso.</li>
+          </ul>
+        </article>
+        <article class="print-note-block">
+          <h3>Checklist de Impresión</h3>
+          <ul>
+            <li>Secar nylon antes de imprimir para no perder resistencia.</li>
+            <li>Evitar PETG en zonas próximas a colectores o calor continuo.</li>
+            <li>Usar insertos térmicos en piezas desmontables o con par de apriete.</li>
+          </ul>
+        </article>
+        <article class="print-note-block">
+          <h3>Validación en Moto</h3>
+          <ul>
+            <li>Verificar interferencias a tope de dirección y tope de suspensión.</li>
+            <li>Revisar vibración en ralentí y a medio régimen.</li>
+            <li>Confirmar que el desmontaje de carenados siga siendo accesible.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
 
 </main>
 
