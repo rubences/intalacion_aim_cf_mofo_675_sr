@@ -7,8 +7,826 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="preload" href="/style.css?v=20260413" as="style" />
-  <link rel="stylesheet" href="/style.css?v=20260413" />
+<style>
+/* ============================================================
+   AiM EVO4 · Instalación CFMoto / Triumph 675 SR
+   Professional UI — v3.0
+   ============================================================ */
+
+/* ── Variables ─────────────────────────────────────────────── */
+:root {
+  --bg:            #080c10;
+  --bg2:           #0d1318;
+  --surface:       #111920;
+  --surface2:      #162028;
+  --border:        #1e2f3a;
+  --border-bright: #2a4255;
+  --accent:        #ff8c00;
+  --accent2:       #ffa733;
+  --accent-glow:   rgba(255, 140, 0, 0.25);
+  --success:       #22c55e;
+  --danger:        #ef4444;
+  --warning:       #f59e0b;
+  --info:          #38bdf8;
+  --text:          #e2eaf2;
+  --text-muted:    #7a99b0;
+  --text-dim:      #4a6475;
+  --font:          "Inter", system-ui, sans-serif;
+  --font-mono:     "JetBrains Mono", "Courier New", monospace;
+  --radius-sm:     6px;
+  --radius:        10px;
+  --radius-lg:     14px;
+  --shadow-sm:     0 1px 4px rgba(0,0,0,.45);
+  --shadow:        0 4px 20px rgba(0,0,0,.55);
+  --shadow-lg:     0 12px 48px rgba(0,0,0,.65);
+  --transition:    0.18s ease;
+  /* phase colors */
+  --c-prep:  #3b82f6;
+  --c-core:  #06b6d4;
+  --c-sens:  #f59e0b;
+  --c-cabl:  #8b5cf6;
+  --c-soft:  #22c55e;
+}
+
+/* ── Reset ──────────────────────────────────────────────────── */
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width:6px; height:6px; }
+::-webkit-scrollbar-track { background:var(--bg2); }
+::-webkit-scrollbar-thumb { background:var(--border-bright); border-radius:99px; }
+::-webkit-scrollbar-thumb:hover { background:var(--accent); }
+
+/* ── Header ─────────────────────────────────────────────────── */
+header {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0a0f15 0%, #0d1a24 50%, #0f1e2b 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 2.25rem 2rem 2rem;
+  text-align: center;
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 55% at 50% -10%, rgba(255,140,0,.18), transparent),
+    radial-gradient(ellipse 30% 40% at 15% 80%, rgba(56,189,248,.07), transparent),
+    radial-gradient(ellipse 25% 35% at 85% 70%, rgba(139,92,246,.06), transparent);
+  pointer-events: none;
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), var(--accent2), var(--accent), transparent);
+}
+
+header .logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.9rem;
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border);
+  padding: .28rem .75rem;
+  border-radius: 99px;
+}
+
+header h1 {
+  font-size: clamp(1.55rem, 4vw, 2.4rem);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+header h1 span {
+  color: var(--accent);
+  text-shadow: 0 0 28px var(--accent-glow);
+}
+
+header p.subtitle {
+  margin-top: 0.55rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+/* ── Global progress bar ────────────────────────────────────── */
+.global-progress {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: .75rem 1.75rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+.global-progress .label {
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.progress-bar-wrap {
+  flex: 1;
+  min-width: 100px;
+  height: 6px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--success));
+  border-radius: 99px;
+  transition: width .5s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.global-progress .pct {
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--accent);
+  min-width: 3rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.btn-reset {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: .73rem;
+  font-weight: 600;
+  padding: .3rem .8rem;
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
+  letter-spacing: .04em;
+}
+
+.btn-reset:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+  background: rgba(239,68,68,.06);
+}
+
+/* ── Tabs navigation ────────────────────────────────────────── */
+nav.tabs {
+  display: flex;
+  gap: 0;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  padding: 0 1rem;
+  scrollbar-width: none;
+}
+nav.tabs::-webkit-scrollbar { display:none; }
+
+nav.tabs button {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: .9rem 1.1rem;
+  white-space: nowrap;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+  position: relative;
+  letter-spacing: .02em;
+}
+
+nav.tabs button:hover {
+  color: var(--text);
+  background: rgba(255,255,255,.03);
+}
+
+nav.tabs button.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+nav.tabs button.active::before {
+  content: "";
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  filter: blur(4px);
+  opacity: .6;
+}
+
+/* ── Main content ───────────────────────────────────────────── */
+main {
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 1.5rem 1.75rem;
+}
+
+.tab-panel { display: none; }
+.tab-panel.active {
+  display: block;
+  animation: fadeIn .2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Section card ───────────────────────────────────────────── */
+.section-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: box-shadow var(--transition);
+}
+
+.section-card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.card-header {
+  background: linear-gradient(135deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  padding: .9rem 1.4rem;
+}
+
+.card-header h2 {
+  font-size: .95rem;
+  font-weight: 700;
+  color: #fff;
+  flex: 1;
+}
+
+.card-header .badge {
+  background: var(--accent);
+  border-radius: var(--radius-sm);
+  color: #000;
+  font-size: .67rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+  padding: .18rem .5rem;
+  text-transform: uppercase;
+}
+
+/* ── Tables ─────────────────────────────────────────────────── */
+.table-wrap { overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .835rem;
+}
+
+thead th {
+  background: rgba(255,255,255,.04);
+  border-bottom: 1px solid var(--border-bright);
+  color: var(--text-muted);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  padding: .7rem 1.1rem;
+  text-align: left;
+  text-transform: uppercase;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition);
+}
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: rgba(255,255,255,.025); }
+
+tbody tr.done { opacity: .5; }
+tbody tr.done td {
+  text-decoration: line-through;
+  text-decoration-color: var(--success);
+}
+tbody tr.done td:first-child,
+tbody tr.done td:last-child { text-decoration: none; }
+
+td {
+  padding: .8rem 1.1rem;
+  vertical-align: top;
+  color: var(--text);
+}
+
+td.id-col {
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  font-weight: 600;
+  width: 3rem;
+}
+
+td.notes { color: var(--warning); font-size: .8rem; }
+td.notes.critical { color: var(--danger); font-weight: 600; }
+
+/* ── QC Checkbox ────────────────────────────────────────────── */
+.qc-check {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.35rem;
+  height: 1.35rem;
+  border: 2px solid var(--border-bright);
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
+}
+
+.qc-check:hover { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+
+.qc-check:checked {
+  background: var(--success);
+  border-color: var(--success);
+  box-shadow: 0 0 8px rgba(34,197,94,.4);
+}
+
+.qc-check:checked::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -55%) rotate(45deg);
+  width: 5px;
+  height: 9px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+}
+
+/* ── Firma input ─────────────────────────────────────────────── */
+.firma-input {
+  background: rgba(0,0,0,.2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: .8rem;
+  padding: .3rem .55rem;
+  width: 88px;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.firma-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+  outline: none;
+}
+
+/* ── Phase badges ────────────────────────────────────────────── */
+.phase-badge {
+  border-radius: var(--radius-sm);
+  display: inline-block;
+  font-size: .67rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  padding: .2rem .55rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.phase-prep { background: rgba(59,130,246,.18); color: #93c5fd; border: 1px solid rgba(59,130,246,.25); }
+.phase-core { background: rgba(6,182,212,.18);  color: #67e8f9; border: 1px solid rgba(6,182,212,.25); }
+.phase-sens { background: rgba(245,158,11,.18); color: #fcd34d; border: 1px solid rgba(245,158,11,.25); }
+.phase-cabl { background: rgba(139,92,246,.18); color: #c4b5fd; border: 1px solid rgba(139,92,246,.25); }
+.phase-soft { background: rgba(34,197,94,.18);  color: #86efac; border: 1px solid rgba(34,197,94,.25); }
+
+/* ── Guide toolbar ───────────────────────────────────────────── */
+.guide-toolbar {
+  align-items: center;
+  background: rgba(255,255,255,.02);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: .85rem;
+  padding: .8rem 1.4rem;
+}
+
+.guide-search {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  gap: .5rem;
+  min-width: 200px;
+}
+
+.guide-search span {
+  color: var(--text-muted);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.guide-search input {
+  background: rgba(0,0,0,.25);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  flex: 1;
+  font-family: var(--font);
+  font-size: .83rem;
+  padding: .42rem .65rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.guide-search input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+  outline: none;
+}
+
+.guide-toggle {
+  align-items: center;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: .78rem;
+  font-weight: 600;
+  gap: .4rem;
+  user-select: none;
+  transition: color var(--transition);
+}
+.guide-toggle:hover { color: var(--text); }
+
+.btn-collapse {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  padding: .4rem .8rem;
+  text-transform: uppercase;
+  transition: all var(--transition);
+}
+
+.btn-collapse:hover,
+.btn-collapse:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-glow);
+  outline: none;
+}
+
+/* ── Phase groups / accordion ────────────────────────────────── */
+.phase-group { margin-bottom: .25rem; }
+.phase-group.filtered-out { display: none; }
+
+.phase-group .phase-title {
+  align-items: center;
+  background: rgba(255,255,255,.025);
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  display: flex;
+  gap: .65rem;
+  padding: .75rem 1.4rem;
+  user-select: none;
+  transition: background var(--transition);
+}
+
+.phase-group .phase-title:hover { background: rgba(255,255,255,.05); }
+.phase-group .phase-title:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+.phase-group .phase-title h3 {
+  color: #fff;
+  flex: 1;
+  font-size: .9rem;
+  font-weight: 700;
+}
+
+.phase-group .phase-progress {
+  background: var(--border);
+  border-radius: 99px;
+  color: var(--text-muted);
+  font-size: .7rem;
+  font-weight: 700;
+  padding: .15rem .55rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.phase-group .toggle-icon {
+  color: var(--text-dim);
+  font-size: .9rem;
+  transition: transform .22s ease;
+}
+
+.phase-group.collapsed .toggle-icon { transform: rotate(-90deg); }
+
+/* ── Step list ────────────────────────────────────────────────── */
+.step-list { list-style: none; }
+
+.step-item {
+  align-items: flex-start;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 1rem;
+  padding: .9rem 1.4rem;
+  transition: background var(--transition);
+}
+
+.step-item.filtered-out { display: none; }
+.step-item:last-child { border-bottom: none; }
+.step-item:hover { background: rgba(255,255,255,.025); }
+
+.step-item.done { opacity: .45; }
+.step-item.done .task { text-decoration: line-through; text-decoration-color: var(--success); }
+
+.step-check { flex-shrink: 0; margin-top: .15rem; }
+
+.step-body { flex: 1; }
+
+.step-body .task {
+  color: #eaf0f6;
+  font-size: .88rem;
+  font-weight: 600;
+}
+
+.step-body .action {
+  color: var(--text-muted);
+  font-size: .8rem;
+  margin-top: .2rem;
+  line-height: 1.55;
+}
+
+.step-body .warning {
+  background: rgba(239,68,68,.08);
+  border-left: 3px solid var(--danger);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: #fca5a5;
+  font-size: .8rem;
+  margin-top: .45rem;
+  padding: .45rem .7rem;
+  line-height: 1.5;
+}
+
+/* ── 3D Print tab ─────────────────────────────────────────────── */
+.print-summary-grid,
+.print-notes-grid {
+  display: grid;
+  gap: .9rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  padding: 1.1rem 1.4rem;
+}
+
+.print-notes-grid { padding-top: .5rem; }
+
+.print-summary-card,
+.print-note-block {
+  background: linear-gradient(145deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.print-summary-card:hover,
+.print-note-block:hover {
+  border-color: var(--border-bright);
+  box-shadow: 0 4px 16px rgba(0,0,0,.3);
+}
+
+.print-summary-card h3,
+.print-note-block h3 {
+  color: #fff;
+  font-size: .85rem;
+  font-weight: 700;
+  margin-bottom: .5rem;
+}
+
+.print-summary-card p,
+.print-note-block li {
+  color: var(--text-muted);
+  font-size: .8rem;
+  line-height: 1.58;
+}
+
+.print-note-block ul { list-style: none; }
+.print-note-block li + li { margin-top: .45rem; }
+.print-note-block li::before { color: var(--accent); content: "▶ "; font-size: .65rem; }
+
+.print-table { margin-top: 0; }
+.print-table tbody td { min-width: 140px; }
+.print-specs {
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: .76rem;
+  line-height: 1.65;
+}
+
+/* ── Toast notifications ─────────────────────────────────────── */
+#toast-container {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.toast {
+  background: var(--surface2);
+  border: 1px solid var(--border-bright);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  color: var(--text);
+  font-size: .82rem;
+  font-weight: 500;
+  max-width: 280px;
+  padding: .65rem 1rem;
+  pointer-events: auto;
+  animation: toastIn .22s ease;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.toast.success { border-left: 3px solid var(--success); }
+.toast.info    { border-left: 3px solid var(--info); }
+.toast.warning { border-left: 3px solid var(--warning); }
+
+.toast.out { animation: toastOut .22s ease forwards; }
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes toastOut {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(20px); }
+}
+
+/* ── Celebration overlay ─────────────────────────────────────── */
+#celebration {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.75);
+  z-index: 9998;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  backdrop-filter: blur(6px);
+}
+
+#celebration.visible { display: flex; }
+
+.celebration-badge {
+  text-align: center;
+  animation: popIn .35s cubic-bezier(.34,1.56,.64,1);
+}
+
+.celebration-badge .emoji { font-size: 4rem; display: block; }
+.celebration-badge h2 { color: var(--accent); font-size: 1.8rem; font-weight: 800; margin-top: .5rem; }
+.celebration-badge p { color: var(--text-muted); font-size: .9rem; margin-top: .25rem; }
+
+.btn-celebration {
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius);
+  color: #000;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: .88rem;
+  font-weight: 700;
+  padding: .65rem 1.75rem;
+  transition: background var(--transition), transform var(--transition);
+}
+.btn-celebration:hover { background: var(--accent2); transform: scale(1.03); }
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(.7); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── Data toolbar (export/import) ────────────────────────────── */
+.data-toolbar {
+  display: flex;
+  gap: .6rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-data {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  padding: .3rem .75rem;
+  text-transform: uppercase;
+  transition: all var(--transition);
+}
+
+.btn-data:hover {
+  border-color: var(--info);
+  color: var(--info);
+  background: rgba(56,189,248,.07);
+}
+
+/* ── Print styles ────────────────────────────────────────────── */
+@media print {
+  header::before, header::after, .global-progress,
+  nav.tabs, .guide-toolbar, .data-toolbar,
+  .btn-reset, .btn-collapse, #toast-container,
+  #celebration { display: none !important; }
+
+  body { background: #fff; color: #000; font-size: 11pt; }
+  .tab-panel { display: block !important; }
+  .section-card { border: 1px solid #ccc; box-shadow: none; page-break-inside: avoid; }
+  thead th { background: #f0f0f0; color: #333; }
+  table { font-size: 9pt; }
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  header { padding: 1.5rem 1rem 1.25rem; }
+  main { padding: 1rem; }
+  nav.tabs { padding: 0 .5rem; }
+  nav.tabs button { font-size: .78rem; padding: .8rem .7rem; }
+
+  .global-progress { padding: .6rem 1rem; }
+
+  td, th { padding: .55rem .65rem; }
+
+  .guide-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+    padding: .75rem 1rem;
+  }
+
+  .guide-search { min-width: unset; }
+  .guide-search input { width: 100%; }
+
+  .print-summary-grid,
+  .print-notes-grid { padding: .85rem 1rem; }
+
+  .card-header { padding: .75rem 1rem; }
+
+  .step-item, .phase-group .phase-title { padding-left: 1rem; padding-right: 1rem; }
+}
+</style>
 </head>
 <body>
 
@@ -690,6 +1508,350 @@
 
 </main>
 
-<script src="/app.js?v=20260413"></script>
+<script>
+/**
+ * app.js – AiM EVO4 · CFMoto / Triumph 675 SR
+ * v3.0 — Toast · Hash routing · Export/Import · Celebration · Shortcuts
+ */
+
+const STORAGE_KEY = "aim675sr_state_v3";
+
+// ── State ─────────────────────────────────────────────────────────────────────
+function loadState() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+  catch { return {}; }
+}
+
+function saveState(state) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+  catch { /* quota exceeded — ignore */ }
+}
+
+// ── Toast ─────────────────────────────────────────────────────────────────────
+function ensureToastContainer() {
+  let c = document.getElementById("toast-container");
+  if (!c) {
+    c = document.createElement("div");
+    c.id = "toast-container";
+    document.body.appendChild(c);
+  }
+  return c;
+}
+
+function showToast(msg, type = "info", duration = 2800) {
+  const icons = { success: "✔", info: "ℹ", warning: "⚠" };
+  const container = ensureToastContainer();
+  const toast = document.createElement("div");
+  toast.className = `toast ${type}`;
+  toast.innerHTML = `<span>${icons[type] ?? "•"}</span><span>${msg}</span>`;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.classList.add("out");
+    toast.addEventListener("animationend", () => toast.remove(), { once: true });
+  }, duration);
+}
+
+// ── Celebration overlay ───────────────────────────────────────────────────────
+function ensureCelebration() {
+  let el = document.getElementById("celebration");
+  if (!el) {
+    el = document.createElement("div");
+    el.id = "celebration";
+    el.innerHTML = `
+      <div class="celebration-badge">
+        <span class="emoji">🏁</span>
+        <h2>¡Instalación Completada!</h2>
+        <p>Todas las verificaciones QC aprobadas. ¡A pista!</p>
+      </div>
+      <button class="btn-celebration" id="btn-close-celebration">Continuar →</button>`;
+    document.body.appendChild(el);
+    document.getElementById("btn-close-celebration")
+      .addEventListener("click", () => el.classList.remove("visible"));
+  }
+  return el;
+}
+
+function checkCompletion(pct) {
+  if (pct === 100) {
+    const cel = ensureCelebration();
+    if (!cel.classList.contains("visible")) {
+      cel.classList.add("visible");
+    }
+  }
+}
+
+// ── Tabs + hash routing ───────────────────────────────────────────────────────
+function initTabs() {
+  const buttons = document.querySelectorAll("nav.tabs button");
+  const panels  = document.querySelectorAll(".tab-panel");
+
+  const activateTab = (tabId) => {
+    buttons.forEach(b => b.classList.remove("active"));
+    panels.forEach(p => p.classList.remove("active"));
+    const btn = document.querySelector(`nav.tabs button[data-tab="${tabId}"]`);
+    const panel = document.getElementById(tabId);
+    if (btn && panel) {
+      btn.classList.add("active");
+      panel.classList.add("active");
+      history.replaceState(null, "", `#${tabId}`);
+    }
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => activateTab(btn.dataset.tab));
+  });
+
+  // Restore from hash
+  const hash = location.hash.replace("#", "");
+  if (hash && document.getElementById(hash)) {
+    activateTab(hash);
+  }
+}
+
+// ── Checkboxes ────────────────────────────────────────────────────────────────
+function initCheckboxes() {
+  const state = loadState();
+
+  document.querySelectorAll("input.qc-check").forEach(cb => {
+    const id = cb.dataset.id;
+    if (state[id]) { cb.checked = true; markRowDone(cb); }
+
+    cb.addEventListener("change", () => {
+      state[id] = cb.checked;
+      saveState(state);
+      markRowDone(cb);
+      updateAllProgress();
+    });
+  });
+
+  updateAllProgress();
+}
+
+function markRowDone(cb) {
+  const row = cb.closest("tr, li.step-item");
+  if (!row) return;
+  row.classList.toggle("done", cb.checked);
+}
+
+// ── Firma inputs ──────────────────────────────────────────────────────────────
+function initFirmaInputs() {
+  const state = loadState();
+
+  document.querySelectorAll("input.firma-input").forEach(input => {
+    const id = input.dataset.id;
+    if (state[id]) input.value = state[id];
+
+    input.addEventListener("input", () => {
+      state[id] = input.value;
+      saveState(state);
+    });
+  });
+}
+
+// ── Progress ──────────────────────────────────────────────────────────────────
+let _lastPct = -1;
+
+function updateAllProgress() {
+  const all     = document.querySelectorAll("input.qc-check");
+  const checked = document.querySelectorAll("input.qc-check:checked");
+  const pct     = all.length ? Math.round((checked.length / all.length) * 100) : 0;
+
+  const fillEl = document.getElementById("global-fill");
+  const pctEl  = document.getElementById("global-pct");
+  if (fillEl) fillEl.style.width = pct + "%";
+  if (pctEl)  animateCounter(pctEl, _lastPct < 0 ? pct : _lastPct, pct);
+  _lastPct = pct;
+
+  // Per-phase
+  document.querySelectorAll(".phase-group").forEach(group => {
+    const total   = group.querySelectorAll("input.qc-check").length;
+    const done    = group.querySelectorAll("input.qc-check:checked").length;
+    const progEl  = group.querySelector(".phase-progress");
+    if (progEl) progEl.textContent = `${done}/${total}`;
+  });
+
+  checkCompletion(pct);
+}
+
+function animateCounter(el, from, to) {
+  const duration = 400;
+  const start    = performance.now();
+  const step     = (ts) => {
+    const progress = Math.min((ts - start) / duration, 1);
+    const eased    = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(from + (to - from) * eased) + "%";
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+// ── Accordions ────────────────────────────────────────────────────────────────
+function initAccordions() {
+  document.querySelectorAll(".phase-title").forEach(title => {
+    title.setAttribute("role", "button");
+    title.setAttribute("tabindex", "0");
+    title.setAttribute("aria-expanded", "true");
+
+    const toggle = () => {
+      const group = title.closest(".phase-group");
+      if (!group) return;
+      const collapsing = !group.classList.contains("collapsed");
+      group.classList.toggle("collapsed", collapsing);
+      title.setAttribute("aria-expanded", String(!collapsing));
+      const body = group.querySelector(".step-list");
+      if (body) body.style.display = collapsing ? "none" : "";
+    };
+
+    title.addEventListener("click", toggle);
+    title.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
+    });
+  });
+}
+
+// ── Guide toolbar (search + filter) ──────────────────────────────────────────
+function applyGuideFilters() {
+  const query       = document.getElementById("guide-search")?.value.trim().toLowerCase() || "";
+  const pendingOnly = document.getElementById("toggle-pending")?.checked;
+
+  document.querySelectorAll(".phase-group").forEach(group => {
+    let hasVisible = false;
+    group.querySelectorAll(".step-item").forEach(item => {
+      const cb     = item.querySelector("input.qc-check");
+      const match  = !query || item.textContent.toLowerCase().includes(query);
+      const pend   = !pendingOnly || !cb?.checked;
+      const show   = match && pend;
+      item.classList.toggle("filtered-out", !show);
+      if (show) hasVisible = true;
+    });
+    group.classList.toggle("filtered-out", !hasVisible);
+  });
+}
+
+function initGuideTools() {
+  document.getElementById("guide-search")    ?.addEventListener("input",  applyGuideFilters);
+  document.getElementById("toggle-pending")  ?.addEventListener("change", applyGuideFilters);
+
+  const collapseBtn = document.getElementById("btn-collapse-all");
+  collapseBtn?.addEventListener("click", () => {
+    const shouldCollapse = collapseBtn.dataset.mode !== "expand";
+    document.querySelectorAll(".phase-group").forEach(group => {
+      group.classList.toggle("collapsed", shouldCollapse);
+      const title = group.querySelector(".phase-title");
+      const body  = group.querySelector(".step-list");
+      title?.setAttribute("aria-expanded", String(!shouldCollapse));
+      if (body) body.style.display = shouldCollapse ? "none" : "";
+    });
+    collapseBtn.dataset.mode  = shouldCollapse ? "expand" : "collapse";
+    collapseBtn.textContent   = shouldCollapse ? "Expandir todo" : "Colapsar todo";
+  });
+}
+
+// ── Reset ─────────────────────────────────────────────────────────────────────
+function initReset() {
+  document.getElementById("btn-reset")?.addEventListener("click", () => {
+    if (!confirm("¿Seguro que quieres reiniciar todos los checks y firmas?")) return;
+    localStorage.removeItem(STORAGE_KEY);
+    _lastPct = 0;
+    document.querySelectorAll("input.qc-check").forEach(cb => { cb.checked = false; markRowDone(cb); });
+    document.querySelectorAll("input.firma-input").forEach(i => { i.value = ""; });
+    updateAllProgress();
+    showToast("Progreso reiniciado", "warning");
+  });
+}
+
+// ── Export / Import ───────────────────────────────────────────────────────────
+function initDataToolbar() {
+  // Inject toolbar HTML next to btn-reset in .global-progress
+  const progress = document.querySelector(".global-progress");
+  if (!progress) return;
+
+  const wrap = document.createElement("div");
+  wrap.className = "data-toolbar";
+  wrap.innerHTML = `
+    <button class="btn-data" id="btn-export">⬇ Exportar</button>
+    <button class="btn-data" id="btn-import">⬆ Importar</button>`;
+  progress.appendChild(wrap);
+
+  document.getElementById("btn-export").addEventListener("click", () => {
+    const state = loadState();
+    const blob  = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+    const url   = URL.createObjectURL(blob);
+    const a     = document.createElement("a");
+    a.href      = url;
+    a.download  = `aim-progress-${new Date().toISOString().slice(0,10)}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast("Progreso exportado", "success");
+  });
+
+  document.getElementById("btn-import").addEventListener("click", () => {
+    const input       = document.createElement("input");
+    input.type        = "file";
+    input.accept      = ".json";
+    input.addEventListener("change", e => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = ev => {
+        try {
+          const raw = JSON.parse(ev.target.result);
+          // Validate: must be a plain object with string/boolean/string values only
+          if (typeof raw !== "object" || Array.isArray(raw) || raw === null) throw new Error("Invalid format");
+          for (const [k, v] of Object.entries(raw)) {
+            if (typeof k !== "string") throw new Error("Invalid key");
+            if (typeof v !== "boolean" && typeof v !== "string") throw new Error("Invalid value");
+          }
+          saveState(raw);
+          _lastPct = 0;
+          // Apply checkboxes
+          document.querySelectorAll("input.qc-check").forEach(cb => {
+            cb.checked = !!raw[cb.dataset.id];
+            markRowDone(cb);
+          });
+          document.querySelectorAll("input.firma-input").forEach(i => {
+            i.value = raw[i.dataset.id] || "";
+          });
+          updateAllProgress();
+          showToast("Progreso importado correctamente", "success");
+        } catch {
+          showToast("Archivo inválido — no se importó", "warning");
+        }
+      };
+      reader.readAsText(file);
+    });
+    input.click();
+  });
+}
+
+// ── Keyboard shortcuts ────────────────────────────────────────────────────────
+function initKeyboardShortcuts() {
+  const tabIds = ["tab-componentes", "tab-fases", "tab-guia", "tab-piezas-3d"];
+
+  document.addEventListener("keydown", e => {
+    // Skip if typing in an input
+    if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+
+    const n = parseInt(e.key, 10);
+    if (n >= 1 && n <= tabIds.length) {
+      const btn = document.querySelector(`nav.tabs button[data-tab="${tabIds[n - 1]}"]`);
+      btn?.click();
+    }
+  });
+}
+
+// ── Boot ──────────────────────────────────────────────────────────────────────
+document.addEventListener("DOMContentLoaded", () => {
+  initTabs();
+  initCheckboxes();
+  initFirmaInputs();
+  initAccordions();
+  initGuideTools();
+  applyGuideFilters();
+  initReset();
+  initDataToolbar();
+  initKeyboardShortcuts();
+});
+</script>
 </body>
 </html>
