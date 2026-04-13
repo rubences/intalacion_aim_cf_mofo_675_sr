@@ -1,0 +1,8 @@
+{
+  "name": "intalacion-aim-cf-mofo-675-sr",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "rm -rf dist && mkdir -p dist && cp index.html style.css app.js dist/"
+  }
+}
